@@ -19,8 +19,7 @@ typedef struct {
 } VERTICE;
 
 //////////////////////////////////////////////////
-void inicializar(VERTICE* g, int v){
-    g = (VERTICE *) malloc(v * sizeof(VERTICE));
+void inicializar(VERTICE* g){
     int i;
     for(i = 0; i < V; i++){
         g[i].inicio = NULL;
@@ -32,8 +31,9 @@ void printar(VERTICE* g){
     int i;
     for(i = 0; i < V; i++){
         p = g[i].inicio;
+        printf("vertice %d \n", g[i].inicio->v);
         while (p != NULL){
-            printf(p->v);
+            printf("%d \n", p->v);
             p = p->prox;
         }
     }
@@ -131,9 +131,14 @@ bool iguais(VERTICE* g1, VERTICE* g2){
 
 int main()
 {
-    VERTICE* g;
-    inicializar(g,5);
-    printf(criarAresta(g, 0, 1));
+    VERTICE* g = (VERTICE *) malloc(V * sizeof(VERTICE));
+    inicializar(g);
+    criarAresta(g, 0, 10);
+    criarAresta(g, 0, 11);
+    criarAresta(g, 0, 9);
+    criarAresta(g, 0, 0);
     printar(g);
+    arestaExiste(g, 0, 8);
+
     return 0;
 }
